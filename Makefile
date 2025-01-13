@@ -13,7 +13,7 @@ HEADERS = -I ./libs -I $(MLX42_PATH)/include/MLX42 -I $(LIBFT_PATH)
 
 SRCS =	main.c
 
-OBJS = $(SRCS:src/%.c=obj/%.o)
+OBJS = $(SRCS:%.c=obj/%.o)
 
 
 all : $(MLX42) $(LIBFT) $(NAME)
@@ -27,7 +27,7 @@ $(LIBFT):
 $(MLX42):
 	cmake $(MLX42_PATH) -B $(MLX42_PATH)/build && make -C $(MLX42_PATH)/build -j4
 
-obj/%.o: src/%.c
+obj/%.o: %.c
 	mkdir -p obj
 	$(CC) $(CFLAGS) -c $< -o $@ $(HEADERS)
 
