@@ -5,7 +5,6 @@ RM = rm -rf
 
 MLX42_PATH = libs/MLX42
 MLX42 = $(MLX42_PATH)/build/libmlx42.a
-#MLX42_BUILD_PATH = $(MLX42_PATH)/build
 
 LIBFT_PATH = libs/libft
 LIBFT = $(LIBFT_PATH)/libft.a
@@ -19,11 +18,8 @@ OBJS = $(SRCS:src/%.c=obj/%.o)
 
 all : $(MLX42) $(LIBFT) $(NAME)
 
-# .SILENT: pa silenciar echos
-
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(MLX42) $(LIBFT) $(HEADERS) -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/" -o $(NAME) -lm
-#a;adido el -lm para linkear bien la libreria math y poder tener floor y ceiling y eso. Podriamos hacer las nuestras si no.
 
 $(LIBFT):
 	make -C $(LIBFT_PATH)
