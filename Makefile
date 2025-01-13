@@ -34,7 +34,6 @@ $(MLX42):
 clean:
 	rm -rf $(OBJECTS)
 	make -C ./libft clean
-	make -C ./MLX42/build clean
 
 fclean:
 	rm -rf $(NAME)
