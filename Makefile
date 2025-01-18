@@ -19,7 +19,7 @@ OBJS = $(SRCS:%.c=obj/%.o)
 all : $(MLX42) $(LIBFT) $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(MLX42) $(LIBFT) $(HEADERS) -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/" -o $(NAME) -lm
+	$(CC) $(CFLAGS) $(OBJS) $(MLX42) $(LIBFT) $(HEADERS) -lglfw -o $(NAME) -lm
 
 $(LIBFT):
 	make -C $(LIBFT_PATH)
