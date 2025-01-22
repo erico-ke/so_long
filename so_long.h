@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:24:53 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/01/16 18:58:46 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:45:16 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,15 @@ typedef struct s_img
 typedef struct s_map
 {
 	char		**map;
+	char		**map_save;
 	int			moves;
 	t_img		img;
 	t_player	player;
-	
+	int			exit;
+	int			coin;
+	int			player_num;
 }	t_map;
 
+int	print_error(char *ret);
 
 #endif
