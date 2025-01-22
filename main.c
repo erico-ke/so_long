@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:19:44 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/01/22 12:48:08 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:54:34 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(int argc, char **argv)
 	t_map	map;
 	
 	if (argc != 2)
-		ft_printf("Please insert only one argument.\n");
+		ft_printf("Please insert one argument, just one.\n");
 	else
 		{
 			
