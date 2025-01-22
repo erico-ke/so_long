@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:19:44 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/01/22 12:54:34 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:03:27 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ int	is_map_valid(t_map map, char *input)
 	line = get_next_line(fd);
 	if (!line)
 		print_error("Map read error.");
+	while ()
+	{
+		
+	}
 }
 
 int	main(int argc, char **argv)
