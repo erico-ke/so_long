@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:19:44 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/01/22 13:03:27 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/01/23 14:29:25 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,28 @@ int	is_map_valid(t_map map, char *input)
 {
 	char	*line;
 	int		fd;
+	int		i;
 
+	i = 0;
 	fd = open(input, O_RDONLY);
-	line = get_next_line(fd);
-	if (!line)
-		print_error("Map read error.");
-	while ()
+	while (map.map[i][0] != '\0' || i == 0)
 	{
-		
+		map.map[i] = get_next_line(fd);
+		if (!map.map[i])
+		{
+			while (i-- >= 0)
+				free(map.map[i]);
+			return (print_error("Map read error."));
+		}
+		i++;
 	}
+	map.map[i][0] = '\0';
+	return (flood_fill());
+}
+
+int	flood_fill()
+{
+	
 }
 
 int	main(int argc, char **argv)
