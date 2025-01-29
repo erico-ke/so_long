@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:24:53 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/01/22 12:45:16 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/01/29 18:01:56 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,14 @@ typedef struct s_map
 	int			exit;
 	int			coin;
 	int			player_num;
+	int			coin_c;
+	int			map_height;
+	int			map_width;
+	int			null_check;
 }	t_map;
 
 int	print_error(char *ret);
+int	is_map_ber(char *input);
+int	is_map_valid(t_map map, char *input);
 
 #endif
