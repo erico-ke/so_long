@@ -6,11 +6,24 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:51:51 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/01/29 18:15:56 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/01/29 19:22:19 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	map_control(t_map map, char *map_input)
+{
+	if (is_map_ber(map_input) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (is_map_valid(map, map_input) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (strdupper(map.map, map.map_save) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+//Aca va flood_fill y revision propia al mapa
+	
+}
+
 
 int	is_map_ber(char *input)
 {
@@ -72,7 +85,7 @@ void	flood_fill(t_map map, int y, int x)
 		map.player_num += 1;
 	if (map.map_save[y][x] == 'C')
 		map.coin_c += 1;
-	if (map.map_save[y][x] == '\0') // cambiar para que sea segun el tamaño del mapa, lo hace mas facil, si y o x == 0 o si y o x == map.size.(y||x) o la variable que sea
+	if (y == 0 || x == 0 || y == map.map_height || x == map.map_width)
 	{
 		map.null_check += 1;
 		return ;
