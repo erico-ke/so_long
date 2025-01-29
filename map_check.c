@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:51:51 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/01/29 18:10:55 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/01/29 18:15:56 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	is_map_valid(t_map map, char *input)
 	close(fd);
 	return (EXIT_SUCCESS);
 }
-//Hay que eliminar el \n de cada linea
+//Hay que eliminar el \n de cada linea o adaptar el codigo del flood fill y otros que chackeen mapa para que tengan en cuenta su existencia. 
 
 // Si encuentra un nulo contador nulos ++ y dsp error por mapa invalido, si no saco los saltos de linea lo mismo con eso
 // Quizas tengo que hacer que la ultima linea de **map sea [null,null,null,null] cantidad de nulos que haya segun la cantidad de columnas en el array de map
