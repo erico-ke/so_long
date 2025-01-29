@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:24:53 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/01/29 18:01:56 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/01/29 19:25:06 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ typedef struct s_map
 }	t_map;
 
 int	print_error(char *ret);
-int	is_map_ber(char *input);
-int	is_map_valid(t_map map, char *input);
+int	strdupper(char **src, char **dest);
+int	map_control(t_map map, char *map_input);
+void	flood_fill(t_map map, int y, int x);
 
 #endif

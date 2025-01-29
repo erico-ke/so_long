@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:51:51 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/01/29 19:22:19 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/01/29 19:24:57 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ int	map_control(t_map map, char *map_input)
 	
 }
 
-
-int	is_map_ber(char *input)
+static int	is_map_ber(char *input)
 {
 	int		i;
 	int		j;
@@ -44,7 +43,7 @@ int	is_map_ber(char *input)
 	return (EXIT_SUCCESS);
 }
 
-int	is_map_valid(t_map map, char *input)
+static int	is_map_valid(t_map map, char *input)
 {
 	char	*line;
 	int		fd;
