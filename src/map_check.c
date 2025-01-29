@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:51:51 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/01/29 19:24:57 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/01/29 19:32:51 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ int	map_control(t_map map, char *map_input)
 		return (EXIT_FAILURE);
 	if (is_map_valid(map, map_input) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	if (strdupper(map.map, map.map_save) == EXIT_FAILURE)
+	if (strdupper(map.map, map.map_save) == EXIT_FAILURE) //a partir de aca hay que liberar memoria en cada exit failure, hacer funcion que libere
 		return (EXIT_FAILURE);
-//Aca va flood_fill y revision propia al mapa
+//Aca va flood_fill y revision propia al mapa, hay que hacer que el t_map tenga su ancho y largo, encontrar la poscicion x e y del jugador 
+//y lo demas que conlleve la revision del mapa
 	
 }
 
