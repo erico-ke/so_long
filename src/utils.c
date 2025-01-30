@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 19:22:04 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/01/30 15:53:42 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:57:56 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,24 +58,12 @@ void	self_map_read(t_map map)
 	}
 }//NO OLVIDAR CHECKEO DE QUE x E y TENGAN UN VALOR ASIGNADO CUANDO SE TERMINE LA FUNCION
 
-void	map_list_init(t_map map)
+static void	set_map_dimensions(t_map map, int i)
 {
-	map.exit = 0;
-	map.moves = 0;
-	map.coin = 0;
-	map.coin_c = 0;
-	map.null_check = 0;
-	set_map_dimensions(map);
-}
-
-void	set_map_dimensions(t_map map)
-{
-	int	i;
 	int	j;
 	int i_first;
 	int j_first;
 
-	i = 0;
 	while (map.map[i++])
 	{
 		j = ft_strlen(map.map[i]);
@@ -94,4 +82,16 @@ void	set_map_dimensions(t_map map)
 		else
 			map.null_check += 1;
 	}
+	map.map_height = i;
+	map.map_width = j;
+}
+
+void	map_list_init(t_map map)
+{
+	map.exit = 0;
+	map.moves = 0;
+	map.coin = 0;
+	map.coin_c = 0;
+	map.null_check = 0;
+	set_map_dimensions(map, 0);
 }

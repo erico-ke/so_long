@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:51:51 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/01/30 17:10:33 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:57:04 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	map_control(t_map map, char *map_input)
 		return (EXIT_FAILURE);
 	if (strdupper(map.map, map.map_save) == EXIT_FAILURE)
 		return (the_freer(map.map), EXIT_FAILURE);
-	
+	map_list_init(map);
 }
 //y lo demas que conlleve la revision del mapa
 //Aca va flood_fill y revision propia al mapa, hay que hacer que el t_map tenga su ancho y largo, encontrar la poscicion x e y del jugador 
