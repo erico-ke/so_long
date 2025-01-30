@@ -6,11 +6,13 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:51:51 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/01/29 19:32:51 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:10:33 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+/*Map validation functions*/
 
 int	map_control(t_map map, char *map_input)
 {
@@ -18,12 +20,12 @@ int	map_control(t_map map, char *map_input)
 		return (EXIT_FAILURE);
 	if (is_map_valid(map, map_input) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	if (strdupper(map.map, map.map_save) == EXIT_FAILURE) //a partir de aca hay que liberar memoria en cada exit failure, hacer funcion que libere
-		return (EXIT_FAILURE);
-//Aca va flood_fill y revision propia al mapa, hay que hacer que el t_map tenga su ancho y largo, encontrar la poscicion x e y del jugador 
-//y lo demas que conlleve la revision del mapa
+	if (strdupper(map.map, map.map_save) == EXIT_FAILURE)
+		return (the_freer(map.map), EXIT_FAILURE);
 	
 }
+//y lo demas que conlleve la revision del mapa
+//Aca va flood_fill y revision propia al mapa, hay que hacer que el t_map tenga su ancho y largo, encontrar la poscicion x e y del jugador 
 
 static int	is_map_ber(char *input)
 {
@@ -70,11 +72,7 @@ static int	is_map_valid(t_map map, char *input)
 	close(fd);
 	return (EXIT_SUCCESS);
 }
-//Hay que eliminar el \n de cada linea o adaptar el codigo del flood fill y otros que chackeen mapa para que tengan en cuenta su existencia. 
-
-// Si encuentra un nulo contador nulos ++ y dsp error por mapa invalido, si no saco los saltos de linea lo mismo con eso
-// Quizas tengo que hacer que la ultima linea de **map sea [null,null,null,null] cantidad de nulos que haya segun la cantidad de columnas en el array de map
-//si en la esquina de arriba a la derecha hay [0, 0, 1...etc] esos dos 0 pueden dar un error, hacer un chackeo de que no haya 0 en la esquina, tiene que ser 1 si o si
+//setear las dimensiones del mapa, NO OLVIDAR. tambien inicializar todos los demas valores de este.
 void	flood_fill(t_map map, int y, int x)
 {
 	if (map.map_save[y][x] == '1')
@@ -85,6 +83,8 @@ void	flood_fill(t_map map, int y, int x)
 		map.player_num += 1;
 	if (map.map_save[y][x] == 'C')
 		map.coin_c += 1;
+	if (map.map_save[y][x] == 'E')
+		map.exit += 1;
 	if (y == 0 || x == 0 || y == map.map_height || x == map.map_width)
 	{
 		map.null_check += 1;
