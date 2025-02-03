@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:19:44 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/03 19:15:01 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/03 19:20:20 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	main(int argc, char **argv)
 		free_all(map);
 		return (EXIT_FAILURE);
 	}
-	
 	free_all(map);
 	return (EXIT_SUCCESS);
 }
