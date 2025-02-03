@@ -6,14 +6,14 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:24:53 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/01/30 17:57:34 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/03 18:27:19 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include "../libs/libft/src/libft.h"
-# include <MLX42.h>
+# include "../libs/MLX42/include/MLX42/MLX42.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -61,11 +61,12 @@ typedef struct s_map
 }	t_map;
 
 int		print_error(char *ret);
-int		strdupper(char **src, char **dest);
-int		map_control(t_map map, char *map_input);
-void	flood_fill(t_map map, int y, int x);
+int		map_control(t_map *map, char *map_input);
+void	flood_fill(t_map *map, int y, int x);
 void	the_freer(char	**free_me);
-void	self_map_read(t_map map);
-void	map_list_init(t_map map);
+int		self_map_read(t_map *map);
+void	map_list_init(t_map *map);
+void	free_all(t_map *map);
+int		main(int argc, char **argv);
 
 #endif

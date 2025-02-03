@@ -11,25 +11,28 @@ LIBFT = $(LIBFT_PATH)/libft.a
 
 HEADERS = -I ./libs -I $(MLX42_PATH)/include/MLX42 -I $(LIBFT_PATH)
 
-SRCS =	main.c
+SRCS =	src/main.c src/utils.c src/error.c src/map_check.c
 
-OBJS = $(SRCS:%.c=obj/%.o)
+OBJS = $(SRCS:$(SRCDIR)%.c=$(OBJDIR)%.o)
+SRCDIR = src/
+OBJDIR = obj/
 
-
-all : $(MLX42) $(LIBFT) $(NAME)
+all : $(MLX42) $(LIBFT) $(OBJDIR) $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(MLX42) $(LIBFT) $(HEADERS) -lglfw -o $(NAME) -lm
+
+$(OBJDIR)%.o: $(SRCDIR)%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJDIR):
+	mkdir -p $@
 
 $(LIBFT):
 	make -C $(LIBFT_PATH)
 
 $(MLX42):
 	cmake $(MLX42_PATH) -B $(MLX42_PATH)/build && make -C $(MLX42_PATH)/build -j4
-
-obj/%.o: %.c
-	mkdir -p obj
-	$(CC) $(CFLAGS) -c $< -o $@ $(HEADERS)
 
 clean:
 	$(RM) obj

@@ -6,26 +6,13 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:51:51 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/01/30 17:57:04 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/03 18:23:04 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 /*Map validation functions*/
-
-int	map_control(t_map map, char *map_input)
-{
-	if (is_map_ber(map_input) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	if (is_map_valid(map, map_input) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	if (strdupper(map.map, map.map_save) == EXIT_FAILURE)
-		return (the_freer(map.map), EXIT_FAILURE);
-	map_list_init(map);
-}
-//y lo demas que conlleve la revision del mapa
-//Aca va flood_fill y revision propia al mapa, hay que hacer que el t_map tenga su ancho y largo, encontrar la poscicion x e y del jugador 
 
 static int	is_map_ber(char *input)
 {
@@ -46,53 +33,92 @@ static int	is_map_ber(char *input)
 	return (EXIT_SUCCESS);
 }
 
-static int	is_map_valid(t_map map, char *input)
+//Gnl->split
+static int	is_map_valid(t_map *map, char *input)
 {
-	char	*line;
 	int		fd;
-	int		i;
+	char	*line;
+	char	*tmp;
 
-	i = 0;
 	fd = open(input, O_RDONLY);
 	if (fd < 0)
 		return (print_error("Map open error"));
-	while (map.map[i][0] != '\0' || i == 0)
+	line = get_next_line(fd);
+	if (!line)
+		return (print_error("Map read error"));
+	while (line != NULL)
 	{
-		map.map[i] = get_next_line(fd);
-		if (!map.map[i])
-		{
-			while (i-- >= 0)
-				free(map.map[i]);
-			close(fd);
-			return (print_error("Map read error."));
-		}
+		tmp = get_next_line(fd);
+		if (tmp == NULL)
+			break ;
+		line = ft_strjoin_g(line, tmp);
+		free(tmp);
+	}
+	close(fd);
+	map->map = ft_split(line, '\n');
+	map->map_save = ft_split(line, '\n');
+	/*
+	int i = 0;
+	while (map->map[i] != NULL)
+	{
+		printf("%s\n", map->map[i]);
 		i++;
 	}
-	map.map[i][0] = '\0';
-	close(fd);
+	*/
+	free (line);
 	return (EXIT_SUCCESS);
 }
-//setear las dimensiones del mapa, NO OLVIDAR. tambien inicializar todos los demas valores de este.
-void	flood_fill(t_map map, int y, int x)
+
+//si hay fallos probar >= en alto y ancho, primer if
+void	flood_fill(t_map *map, int y, int x)
 {
-	if (map.map_save[y][x] == '1')
-		return ;
-	if (map.map_save[y][x] == '*')
-		return ;
-	if (map.map_save[y][x] == 'P')
-		map.player_num += 1;
-	if (map.map_save[y][x] == 'C')
-		map.coin_c += 1;
-	if (map.map_save[y][x] == 'E')
-		map.exit += 1;
-	if (y == 0 || x == 0 || y == map.map_height || x == map.map_width)
+	if (y < 0 || x < 0 || y > map->map_height || x > map->map_width)
 	{
-		map.null_check += 1;
+		map->null_check += 1;
 		return ;
 	}
-	map.map_save[y][x] = '*';
+	if (map->map_save[y][x] == '1')
+		return ;
+	if (map->map_save[y][x] == '*')
+		return ;
+	if (map->map_save[y][x] == 'P')
+		map->player_num += 1;
+	if (map->map_save[y][x] == 'C')
+		map->coin_c += 1;
+	if (map->map_save[y][x] == 'E')
+		map->exit += 1;
+	map->map_save[y][x] = '*';
 	flood_fill(map, y + 1, x);
 	flood_fill(map, y, x + 1);
 	flood_fill(map, y - 1, x);
 	flood_fill(map, y, x - 1);
 }
+
+int	map_control(t_map *map, char *map_input)
+{
+	if (is_map_ber(map_input) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (is_map_valid(map, map_input) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	map_list_init(map);
+	self_map_read(map);
+	if (!map->player.y || !map->player.x)
+		return (EXIT_FAILURE);
+
+	flood_fill(map, map->player.y, map->player.x);
+	if (map->player_num != 1 || map->coin != map->coin_c
+	|| map->exit != 1 || map->null_check > 0)
+	{
+		the_freer(map->map);
+		the_freer(map->map_save);
+		return (print_error("Invalid map."));
+	}
+	return (EXIT_SUCCESS);
+}
+
+	/* int i = 0;
+	while (map->map[i] != NULL)
+	{
+		printf("%s\n", map->map[i]);
+		i++;
+	} */
