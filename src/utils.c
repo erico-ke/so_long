@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 19:22:04 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/03 18:50:15 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/03 19:15:49 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int	self_map_read(t_map *map)
 			if (map->map[i][j] == 'C')
 				map->coin += 1;
 			if (map->map[i][j] == 'P')
-				{
-					map->player.y = i;
-					map->player.x = j;
-				}
+			{
+				map->player.y = i;
+				map->player.x = j;
+			}
 			j++;
 		}
 		i++;
@@ -41,8 +41,8 @@ int	self_map_read(t_map *map)
 
 static void	set_map_dimensions(t_map *map)
 {
-	int		 	i;
-	size_t		j;
+	int		i;
+	size_t	j;
 
 	i = 0;
 	j = ft_strlen(map->map[0]);
@@ -55,7 +55,6 @@ static void	set_map_dimensions(t_map *map)
 
 void	map_list_init(t_map *map)
 {
-
 	map->exit = 0;
 	map->moves = 0;
 	map->coin = 0;

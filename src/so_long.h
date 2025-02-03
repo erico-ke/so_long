@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:24:53 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/03 18:27:19 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/03 19:16:54 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define ESC     53
 # define IMG_PXL 50
 
-typedef	struct s_player
+typedef struct s_player
 {
 	int	y;
 	int	x;
