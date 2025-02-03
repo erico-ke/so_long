@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:55:14 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/03 18:27:12 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/03 18:38:45 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ void	the_freer(char	**free_me)
 
 void	free_all(t_map *map)
 {
-	
-	the_freer(map->map);
-	the_freer(map->map_save);
+	if (map->map)
+		the_freer(map->map);
+	if (map->map_save)
+		the_freer(map->map_save);
 	free(map);
 }

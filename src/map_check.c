@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:51:51 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/03 18:23:04 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/03 18:47:45 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,6 @@ static int	is_map_valid(t_map *map, char *input)
 	close(fd);
 	map->map = ft_split(line, '\n');
 	map->map_save = ft_split(line, '\n');
-	/*
-	int i = 0;
-	while (map->map[i] != NULL)
-	{
-		printf("%s\n", map->map[i]);
-		i++;
-	}
-	*/
 	free (line);
 	return (EXIT_SUCCESS);
 }
@@ -79,14 +71,16 @@ void	flood_fill(t_map *map, int y, int x)
 	}
 	if (map->map_save[y][x] == '1')
 		return ;
-	if (map->map_save[y][x] == '*')
+	else if (map->map_save[y][x] == '*')
 		return ;
-	if (map->map_save[y][x] == 'P')
+	else if (map->map_save[y][x] == 'P')
 		map->player_num += 1;
-	if (map->map_save[y][x] == 'C')
+	else if (map->map_save[y][x] == 'C')
 		map->coin_c += 1;
-	if (map->map_save[y][x] == 'E')
+	else if (map->map_save[y][x] == 'E')
 		map->exit += 1;
+	else if (map->map_save[y][x] != '0')
+		map->null_check += 1;
 	map->map_save[y][x] = '*';
 	flood_fill(map, y + 1, x);
 	flood_fill(map, y, x + 1);
@@ -104,15 +98,10 @@ int	map_control(t_map *map, char *map_input)
 	self_map_read(map);
 	if (!map->player.y || !map->player.x)
 		return (EXIT_FAILURE);
-
 	flood_fill(map, map->player.y, map->player.x);
 	if (map->player_num != 1 || map->coin != map->coin_c
 	|| map->exit != 1 || map->null_check > 0)
-	{
-		the_freer(map->map);
-		the_freer(map->map_save);
 		return (print_error("Invalid map."));
-	}
 	return (EXIT_SUCCESS);
 }
 

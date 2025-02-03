@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 19:22:04 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/03 18:22:17 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/03 18:50:15 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,18 @@ int	self_map_read(t_map *map)
 		i++;
 	}
 	return (EXIT_SUCCESS);
-}//NO OLVIDAR CHECKEO DE QUE x E y TENGAN UN VALOR ASIGNADO CUANDO SE TERMINE LA FUNCION
+}
 
 static void	set_map_dimensions(t_map *map)
 {
-	int i;
-	int	j;
-	int j_first;
+	int		 	i;
+	size_t		j;
 
 	i = 0;
 	j = ft_strlen(map->map[0]);
-	j_first = 0;
 	while (map->map[i++] != NULL)
-	{
-		if (j_first == 0 || j == j_first)	
-			j_first = j;
-		else
-			map->null_check += 1;
-	}
+		if (map->map[i] && ft_strlen(map->map[i]) != j)
+			map->null_check++;
 	map->map_height = i - 1;
 	map->map_width = j;
 }
