@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:51:51 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/03 19:16:07 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:43:41 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,10 @@ void	flood_fill(t_map *map, int y, int x)
 	else if (map->map_save[y][x] == 'E')
 		map->exit += 1;
 	else if (map->map_save[y][x] != '0')
+	{
 		map->null_check += 1;
+		return ;
+	}
 	map->map_save[y][x] = '*';
 	flood_fill(map, y + 1, x);
 	flood_fill(map, y, x + 1);
@@ -99,8 +102,8 @@ int	map_control(t_map *map, char *map_input)
 	if (!map->player.y || !map->player.x)
 		return (EXIT_FAILURE);
 	flood_fill(map, map->player.y, map->player.x);
-	if (map->player_num != 1 || map->coin != map->coin_c
-		|| map->exit != 1 || map->null_check > 0)
+	if (map->player_num != 1 || map->coin != map->coin_c || map->exit_c != 1
+		|| map->exit != 1 || map->null_check > 0 || map->player_c != 1)
 		return (print_error("Invalid map."));
 	return (EXIT_SUCCESS);
 }
