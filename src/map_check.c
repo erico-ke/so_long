@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:51:51 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/05 15:43:41 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/07 18:16:37 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,9 @@ int	map_control(t_map *map, char *map_input)
 	if (map->player_num != 1 || map->coin != map->coin_c || map->exit_c != 1
 		|| map->exit != 1 || map->null_check > 0 || map->player_c != 1)
 		return (print_error("Invalid map."));
+	if (map->coin < 1)
+		return (print_error("Invalid map."));
 	return (EXIT_SUCCESS);
 }
+
+//NO OLVIDAR QUE COLECCIONABLES TIENEN QUE SER >= 1
