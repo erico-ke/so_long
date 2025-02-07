@@ -6,9 +6,13 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:53:11 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/04 16:53:48 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/07 17:52:43 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	op_window(mlx_t *wind)
+{
+	wind = mlx_init(50, 40, "so_long", true);
+}
