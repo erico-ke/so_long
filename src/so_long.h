@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:24:53 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/07 17:51:54 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:20:36 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,18 @@ typedef struct s_player
 
 typedef struct s_img
 {
-	void	*collectible;
-	void	*wall;
-	void	*exit;
-	void	*player_left;
-	void	*player_right;
-	void	*player_up;
-	void	*player_down;
-	void	*tile;
+	mlx_texture_t	*collectible;
+	mlx_texture_t	*wall;
+	mlx_texture_t	*exit_c;
+	mlx_texture_t	*exit_o;
+	mlx_texture_t	*player;
+	mlx_texture_t	*tile;
+	mlx_image_t		*collect_i;
+	mlx_image_t		*wall_i;
+	mlx_image_t		*exit_c_i;
+	mlx_image_t		*exit_o_i;
+	mlx_image_t		*player_i;
+	mlx_image_t		*tile_i;
 }	t_img;
 
 typedef struct s_map
