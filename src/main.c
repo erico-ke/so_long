@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:19:44 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/11 15:25:01 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:33:55 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,16 @@ void image_init(t_map *map)
 	map->img.tile_i = mlx_texture_to_image(map->wind, map->img.tile);
 }
 
+void	map_texture_charge(t_map map, int y, int x)
+{
+	
+}
+
 int	init_window(t_map *map)
 {
 	map->wind = mlx_init(IMG_PXL * map->map_width, IMG_PXL * map->map_height, "so_long", false);
+	image_init(map);
 	
-	mlx_loop(map->wind);
 	return (0);
 }
 int	main(int argc, char **argv)
