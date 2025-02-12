@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:19:44 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/12 18:41:48 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/12 18:43:57 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	move_player(t_map *map, int y, int x, char dir)
 {
 	if (dir == 'w' && map->map[y - 1][x] != '1')
 	{
+		//checkear si sacando la linea de abajo hay problemas o no
 		map->player.y -= 1;
 		map->map[y - 1][x] = 'P';
 		map->map[y][x] = '0';
