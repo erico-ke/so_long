@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:19:44 by erico-ke          #+#    #+#             */
-/*   Updated: 2025/02/11 18:30:59 by erico-ke         ###   ########.fr       */
+/*   Updated: 2025/02/12 18:41:48 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,16 @@ void	map_texture_charge(t_map *map, int y, int x)
 	else if (map->map[y][x] == 'C')
 		mlx_image_to_window(map->wind, map->img.collect_i, x * IMG_PXL, y * IMG_PXL);
 	else if (map->map[y][x] == 'P')
-	mlx_image_to_window(map->wind, map->img.player_i, x * IMG_PXL, y * IMG_PXL);
+	{
+		mlx_image_to_window(map->wind, map->img.tile_i, x * IMG_PXL, y * IMG_PXL);
+		mlx_image_to_window(map->wind, map->img.player_i, x * IMG_PXL, y * IMG_PXL);
+	}
 	else
 	{
 		if (map->coin_c != 0)
 			mlx_image_to_window(map->wind, map->img.exit_c_i, x * IMG_PXL, y * IMG_PXL);
 		else
-		mlx_image_to_window(map->wind, map->img.exit_o_i, x * IMG_PXL, y * IMG_PXL);
+			mlx_image_to_window(map->wind, map->img.exit_o_i, x * IMG_PXL, y * IMG_PXL);
 	}
 	if (map->map[y][x + 1])
 		map_texture_charge(map, y , x + 1);
@@ -54,11 +57,37 @@ void	map_texture_charge(t_map *map, int y, int x)
 	}
 }
 
+//las dos funciones de abajo cuando apreto UP no mueven o no parecen mover el personaje pero cuando aprieto ESC sale el mensaje del "Bolas"
+//WTF
+
+void	move_player(t_map *map, int y, int x, char dir)
+{
+	if (dir == 'w' && map->map[y - 1][x] != '1')
+	{
+		map->player.y -= 1;
+		map->map[y - 1][x] = 'P';
+		map->map[y][x] = '0';
+		map_texture_charge(map, y - 1, x);
+	}
+}
+
+void	on_key_press(mlx_key_data_t keydata, void *param)
+{
+	t_map	*map;
+
+	map = param;
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+		mlx_close_window(map->wind);
+	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
+		move_player(map, map->player.y, map->player.x, 'w');	
+}
+
 int	init_window(t_map *map)
 {
 	map->wind = mlx_init(IMG_PXL * map->map_width, IMG_PXL * map->map_height, "so_long", false);
 	image_init(map);
 	map_texture_charge(map, 0, 0);
+	mlx_key_hook(map->wind, &on_key_press , map);
 	mlx_loop(map->wind);
 	return (0);
 }
@@ -90,4 +119,5 @@ mlx_set_icon, le da un icono a la ventana en la barra de apps(abajo)
 mlx_is_key_down, checkea si una key esta apretada
 mlx_load_xpm42 carga de texturas en formato xpm42
 mlx_delete_xpm42 libera la data de la textura, destruyendola
+mlx_key_hook para detectar teclas presionadas durante el loop
  */
